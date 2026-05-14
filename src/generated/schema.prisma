@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  user_id       Int            @id @default(autoincrement())
+  name          String         @unique
+  email         String
+  username      String
+  created_at    DateTime       @default(now())
+  cars          Car[]
+  notifications Notification[]
+}
+
+model Car {
+  car_id       Int      @id @default(autoincrement())
+  user_id      Int
+  make         String
+  model        String
+  year         Int
+  registration String
+  mileage      Int
+  created_at   DateTime @default(now())
+
+  user          User           @relation(fields: [user_id], references: [user_id])
+  services      Service[]
+  notifications Notification[]
+}
+
+model Service {
+  service_id       Int       @id @default(autoincrement())
+  car_id           Int
+  service_type     String
+  description      String?
+  mileage          Int
+  service_date     DateTime
+  next_due_date    DateTime?
+  next_due_mileage Int?
+  cost             Decimal
+
+  car Car @relation(fields: [car_id], references: [car_id])
+}
+
+model Notification {
+  notification_id Int      @id @default(autoincrement())
+  user_id         Int
+  car_id          Int
+  message         String
+  due_date        DateTime
+  is_read         Boolean  @default(false)
+
+  user User @relation(fields: [user_id], references: [user_id])
+  car  Car  @relation(fields: [car_id], references: [car_id])
+}

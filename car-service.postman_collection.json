@@ -280,6 +280,30 @@
       "response": []
     },
     {
+      "name": "Delete service by id",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/services/:id",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "services",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Replace user",
       "request": {
         "method": "PUT",
@@ -339,6 +363,30 @@
           ],
           "path": [
             "notifications",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update service by id",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/services/:id",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "services",
             ":id"
           ],
           "variable": [

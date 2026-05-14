@@ -10,7 +10,7 @@
 
 ## Services
 '/services' - GET, POST
-'/services/:id' GET
+'/services/:id' - GET, DELETE, PATCH
 '/cars/:id/services - GET
 
 
